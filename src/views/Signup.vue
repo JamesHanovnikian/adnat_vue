@@ -1,5 +1,5 @@
 <template>
-  <div class="signup">
+  <div class="signup"> 
     <form v-on:submit.prevent="submit()">
       <h1>Signup</h1>
       <ul>
@@ -7,18 +7,21 @@
       </ul>
       <div>
         <label>Name:</label>
+        <br /> 
         <input type="text" v-model="newUserParams.name" />
       </div>
       <div>
         <label>Email:</label>
+        <br /> 
         <input type="email" v-model="newUserParams.email" />
       </div>
       <div>
-        <label>Password:</label>
+        <label>Password: (six characters minimum)</label> <br /> 
         <input type="password" v-model="newUserParams.password" />
       </div>
       <div>
         <label>Password confirmation:</label>
+        <br /> 
         <input type="password" v-model="newUserParams.password_confirmation" />
       </div>
       <input type="submit" value="Submit" />

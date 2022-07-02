@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
+      <h2> Adnat </h2> 
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
@@ -19,6 +20,9 @@
 
 #nav {
   padding: 30px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 #nav a {
