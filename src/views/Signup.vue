@@ -18,11 +18,14 @@
       <div>
         <label>Password: (six characters minimum)</label> <br /> 
         <input type="password" v-model="newUserParams.password" />
+        <br /> 
+        <small v-if="newUserParams.password.length < 6"> Password is too short. </small>
       </div>
       <div>
         <label>Password confirmation:</label>
         <br /> 
         <input type="password" v-model="newUserParams.password_confirmation" />
+        
       </div>
       <input type="submit" value="Submit" />
     </form>
@@ -35,7 +38,9 @@ import axios from "axios";
 export default {
   data: function () {
     return {
-      newUserParams: {},
+      newUserParams: {
+        password: "",
+      },
       errors: [],
     };
   },
