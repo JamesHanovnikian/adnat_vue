@@ -2,10 +2,10 @@
   <div id="app">
     <div id="nav">
       <h2> Adnat </h2> 
-      <p> {{ isLoggedIn() }}</p>
       <router-link to="/">Home</router-link> |
       <router-link to="/login">Login </router-link> |
       <router-link v-if="isLoggedIn() "to="/logout"> Logout </router-link> 
+      <p v-if="isLoggedIn()"> You are logged in as {{ isLoggedIn() }} . </p>
     </div>
     <router-view/>
   </div>
@@ -15,8 +15,8 @@
 export default {
   methods: {
     isLoggedIn: function () {
-      if (localStorage.getItem("jwt")) {
-        return true;
+      if (localStorage.getItem("name")) {
+        return localStorage.getItem("name");
       } else {
         return false;
       }
