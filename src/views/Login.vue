@@ -13,10 +13,10 @@
         <label>Password:</label> <br /> 
         <input type="password" v-model="newSessionParams.password" />
       </div>
-      <div>
+      <!-- <div>
         <label>Datetime:</label> <br /> 
         <input type="datetime-local" v-model="newSessionParams.datetime" />
-      </div>
+      </div> -->
       <input type="submit" value="Submit" />
       
     </form>
@@ -42,7 +42,7 @@ export default {
           axios.defaults.headers.common["Authorization"] =
             "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
-          this.$router.push("/");
+          this.$router.push("/organizations");
         })
         .catch((error) => {
           console.log(error.response);

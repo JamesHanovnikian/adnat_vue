@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Organizations from "../views/Organizations.vue";
+import OrganizationShow from "../views/OrganizationShow.vue";
+import Logout from "../views/Logout.vue";
+
 
 Vue.use(VueRouter)
 
@@ -24,9 +27,19 @@ const routes = [
     component: Login
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    component: Logout
+  },
+  {
     path: '/organizations',
     name: 'Organizations',
     component: Organizations
+  },
+  {
+    path: '/organization/:id',
+    name: 'OrganizationShow',
+    component: OrganizationShow
   },
   {
     path: '/about',
