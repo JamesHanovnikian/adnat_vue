@@ -27,6 +27,7 @@ export default {
   data: function () {
     return {
       organization: [],
+      organizations: [],
     };
   },
   created: function () {
@@ -52,10 +53,18 @@ export default {
           this.errors = error.response.data.errors;
         });
     },
-    destroyOrganization: function () {
+    destroyOrganization: function (organization) {
       axios.delete("/organizations/" + organization.id).then((response) => {
         console.log("org destroy", response);
+        var index = this.organizations.indexOf(organization);
+        this.organizations.splice(index, 1);
         this.$router.push("/organizations");
+      });
+    },
+    orgIndex: function () {
+      axios.get("/organizations").then((response) => {
+        console.log("org index", response);
+        this.organizations = response.data;
       });
     },
   },
