@@ -6,7 +6,9 @@
     <li v-for="organization in organizations">
       {{ organization.name }}
       <router-link v-bind:to="`/organization/${organization.id}`"> Edit </router-link>
-      <router-link to="/"> Join </router-link> 
+      <button v-on:click="joinOrganization(organization)"> Join </button> 
+      {{ info.user_id }}
+      {{ info.organization_id }}
     </li>
     <h2> Create an Organization </h2>
     <form> 
@@ -30,6 +32,10 @@ export default {
     return {
       organizations: [],
       newOrganizationParams: {},
+      info: {
+        user_id: 0,
+        organization_id: 0,
+      },
     };
   },
   created: function () {
@@ -40,6 +46,13 @@ export default {
       axios.get("/organizations").then((response) => {
         console.log("org index", response);
         this.organizations = response.data;
+      });
+    },
+    joinOrganization: function (organization) {
+      this.info.user_id = localStorage.getItem("user_id");
+      this.info.organization_id = organization.id;
+      axios.post("/join_organization", this.info).then((response) => {
+        console.log("org post!", response);
       });
     },
     orgCreate: function () {

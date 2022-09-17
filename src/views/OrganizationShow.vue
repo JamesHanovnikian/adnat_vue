@@ -12,8 +12,6 @@
       <input type="submit" value="Update" />
     </form>
     <button v-on:click="destroyOrganization(organization)"> Delete Organization </button>
-
-
   </div>
 </template>
 
@@ -40,6 +38,7 @@ export default {
         this.organization = response.data;
       });
     },
+
     updateOrganization: function (organization) {
       var editOrganizationParams = organization;
       axios
