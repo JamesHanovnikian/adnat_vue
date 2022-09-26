@@ -39,11 +39,16 @@ export default {
       axios
         .post("/sessions", this.newSessionParams)
         .then((response) => {
-          axios.defaults.headers.common["Authorization"] =
-            "Bearer " + response.data.jwt;
+          axios.defaults.headers.common["Authorization"];
+          "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("name", response.data.name);
-          this.$router.push("/organizations");
+          console.log(response);
+          var organization = response.data.organization;
+          console.log("*******************");
+          console.log(organization);
+          console.log("*******************");
+          this.$router.push("/organization/" + organization);
         })
         .catch((error) => {
           console.log(error.response);

@@ -1,22 +1,14 @@
 <template>
   <div class="OrganizationShow">
-    <h1> Adnat </h1>
-    <h2> Edit Organization </h2>
+    <h2> {{ organization.name }} </h2>
+    <a href=""> View Shifts </a> <br> 
+    <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link> <br> 
+    <button v-on:click="leaveOrganization(organization)"> Leave </button>
 
-    
-    <form v-on:submit.prevent="updateOrganization(organization)">
-      Name:
-      <input type="text" v-model="organization.name" />
-      Houryl Rate:
-      <input type="text" v-model="organization.hourly_rate" />
-      <input type="submit" value="Update" />
-    </form>
-    <button v-on:click="destroyOrganization(organization)"> Delete Organization </button>
   </div>
 </template>
-
 <style>
-</style>
+</style> 
 
 <script>
 import axios from "axios";
@@ -26,6 +18,10 @@ export default {
     return {
       organization: [],
       organizations: [],
+      info: {
+        user_id: 0,
+        organization_id: 0,
+      },
     };
   },
   created: function () {
@@ -38,25 +34,11 @@ export default {
         this.organization = response.data;
       });
     },
-
-    updateOrganization: function (organization) {
-      var editOrganizationParams = organization;
-      axios
-        .patch("/organizations/" + organization.id, editOrganizationParams)
-        .then((response) => {
-          console.log("org update", response);
-          this.$router.push("/organizations");
-        })
-        .catch((error) => {
-          console.log("org update error", error.response);
-          this.errors = error.response.data.errors;
-        });
-    },
-    destroyOrganization: function (organization) {
-      axios.delete("/organizations/" + organization.id).then((response) => {
-        console.log("org destroy", response);
-        var index = this.organizations.indexOf(organization);
-        this.organizations.splice(index, 1);
+    leaveOrganization: function (organization) {
+      this.info.user_id = localStorage.getItem("user_id");
+      this.info.organization_id = organization.id;
+      axios.post("/leave_organization/", this.info).then((response) => {
+        console.log("leave org", response);
         this.$router.push("/organizations");
       });
     },

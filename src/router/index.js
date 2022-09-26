@@ -5,6 +5,7 @@ import Signup from "../views/Signup.vue";
 import Login from "../views/Login.vue";
 import Organizations from "../views/Organizations.vue";
 import OrganizationShow from "../views/OrganizationShow.vue";
+import OrganizationEdit from "../views/OrganizationEdit.vue";
 import Logout from "../views/Logout.vue";
 
 
@@ -40,6 +41,11 @@ const routes = [
     path: '/organization/:id',
     name: 'OrganizationShow',
     component: OrganizationShow
+  },
+  {
+    path: '/organization/:id/edit',
+    name: 'OrganizationEdit',
+    component: OrganizationEdit
   },
   {
     path: '/about',

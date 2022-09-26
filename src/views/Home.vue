@@ -1,6 +1,11 @@
 <template>
   <div class="home">
-    <h1> </h1>
+  
+  <a href=""> View Shifts </a> <br> 
+  <a href=""> Edit </a><br> 
+  <a href=""> Leave </a><br> 
+
+
 
   </div>
 </template>
@@ -14,6 +19,8 @@ export default {
     return {};
   },
   created: function () {},
-  methods: {},
+  methods: {
+    leaveOrganization: function () {},
+  },
 };
 </script>

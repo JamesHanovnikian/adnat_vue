@@ -1,11 +1,11 @@
 <template>
   <div class="organization">
     <h1> Adnat </h1>
-    <p> You aren't a member of any organizations. Join an existing one or create a new one. </p>
+    <p v-if=""> You aren't a member of any organizations. Join an existing one or create a new one. </p>
     <h2> Organizations </h2>
     <li v-for="organization in organizations">
       {{ organization.name }}
-      <router-link v-bind:to="`/organization/${organization.id}`"> Edit </router-link>
+      <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link>
       <button v-on:click="joinOrganization(organization)"> Join </button> 
       {{ info.user_id }}
       {{ info.organization_id }}
@@ -48,11 +48,13 @@ export default {
         this.organizations = response.data;
       });
     },
+    hasOrgId: function () {},
     joinOrganization: function (organization) {
       this.info.user_id = localStorage.getItem("user_id");
       this.info.organization_id = organization.id;
       axios.post("/join_organization", this.info).then((response) => {
         console.log("org post!", response);
+        this.$router.push("/organization/${organization}");
       });
     },
     orgCreate: function () {
