@@ -43,12 +43,13 @@ export default {
           "Bearer " + response.data.jwt;
           localStorage.setItem("jwt", response.data.jwt);
           localStorage.setItem("name", response.data.name);
-          console.log(response);
           var organization = response.data.organization;
-          console.log("*******************");
           console.log(organization);
-          console.log("*******************");
-          this.$router.push("/organization/" + organization);
+          if (organization == null) {
+            this.$router.push("/organizations");
+          } else {
+            this.$router.push("/organization/" + organization);
+          }
         })
         .catch((error) => {
           console.log(error.response);
