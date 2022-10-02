@@ -54,7 +54,7 @@ export default {
       this.info.organization_id = organization.id;
       axios.post("/join_organization", this.info).then((response) => {
         console.log("org post!", response);
-        this.$router.push("/organization/${organization}");
+        this.$router.push("/organization/" + organization.id);
       });
     },
     orgCreate: function () {
