@@ -1,6 +1,8 @@
 <template>
   <div class="home">
   
+
+  
   <a href=""> View Shifts </a> <br> 
   <a href=""> Edit </a><br> 
   <a href=""> Leave </a><br> 

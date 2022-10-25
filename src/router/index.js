@@ -7,6 +7,7 @@ import Organizations from "../views/Organizations.vue";
 import OrganizationShow from "../views/OrganizationShow.vue";
 import OrganizationEdit from "../views/OrganizationEdit.vue";
 import Logout from "../views/Logout.vue";
+import Shifts from "../views/Shifts.vue"
 
 
 Vue.use(VueRouter)
@@ -46,6 +47,11 @@ const routes = [
     path: '/organization/:id/edit',
     name: 'OrganizationEdit',
     component: OrganizationEdit
+  },
+  {
+    path: '/organization/:id/shifts',
+    name: 'Shifts',
+    component: Shifts
   },
   {
     path: '/about',

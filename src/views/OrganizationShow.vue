@@ -1,7 +1,7 @@
 <template>
   <div class="OrganizationShow">
     <h2> {{ organization.name }} </h2>
-    <a href=""> View Shifts </a> <br> 
+     <router-link v-bind:to="`/organization/${organization.id}/shifts`"> View Shifts </router-link>
     <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link> <br> 
     <button v-on:click="leaveOrganization(organization)"> Leave </button>
 
