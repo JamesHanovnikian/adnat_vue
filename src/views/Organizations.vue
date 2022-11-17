@@ -1,6 +1,6 @@
 <template>
   <div class="organization">
-    <h1> Adnat </h1>
+    <h1> Employee Portal </h1>
     <p v-if=""> You aren't a member of any organizations. Join an existing one or create a new one. </p>
     <h2> Organizations </h2>
     <li v-for="organization in organizations">

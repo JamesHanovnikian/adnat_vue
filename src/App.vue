@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <h2 class="brand-name"> Adnat </h2> 
+      <h2 class="brand-name"> ManagerHelper </h2> 
       <router-link to="/">Home</router-link> 
       <router-link  v-if="!isLoggedIn()"to="/login"> | Login </router-link> |
       <router-link v-if="isLoggedIn() "to="/logout"> Logout </router-link> 
@@ -9,7 +9,8 @@
       <router-link to="/signup"> Signup </router-link> 
       <small v-if="isLoggedIn()"> Currently logged in as {{ getUserName() }} </small>
     </div>
-         <h1> Adnat </h1>
+
+      <p v-if="isLoggedIn()"> Currently logged in as {{ getUserName() }}  </p> 
     <router-view/>
 
   </div>
