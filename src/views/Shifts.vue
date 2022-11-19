@@ -14,13 +14,14 @@
         <th> Shift Cost </th>
       </tr>
       <tr v-for="shift in shifts">
-        <td> {{ shift.employee_name }} </td>
+        <td> {{ shift.organization.name }} </td>
         <td> {{ formattedDate(shift.start)}} </td>
         <td> {{ formattedTime(shift.start)}} </td> 
         <td> {{ formattedTime(shift.finish)}} </td>
         <td> {{ shift.break_length }} minutes </td>
         <td> {{ hoursWorked(shift.start, shift.finish) }} </td>
-        <td> Shift Cost </td>
+        <td> $ {{ shiftCost(shift.break_length, shift.start, shift.finish, shift.organization.hourly_rate)}} 
+        </td>
       </tr>
     </table>
   </div>
@@ -103,6 +104,16 @@ export default {
     },
     hoursWorked: function (start, finish) {
       return moment(finish).diff(start, "hours");
+    },
+    shiftCost: function (break_length, start, finish, hourly_rate) {
+      var hoursWorked = moment(finish).diff(start, "hours");
+      var workedMinutes = hoursWorked * 60 - break_length;
+      var workedHours = workedMinutes / 60;
+      if (workedHours <= 0) {
+        return 0;
+      } else {
+        return workedHours * hourly_rate;
+      }
     },
   },
 };
