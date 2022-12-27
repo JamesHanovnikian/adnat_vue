@@ -5,7 +5,7 @@
   <p> Shifts </p>
     <table>
       <tr>
-        <th> Employee Name </th>
+        <th> Employer Name </th>
         <th> Shift Date </th>
         <th> Start Time </th>
         <th> Finish time </th>
@@ -24,6 +24,33 @@
         </td>
       </tr>
     </table>
+    <br /> 
+    <br /> 
+    <br /> 
+    <p> Add a Shift </p>
+    
+
+  
+    <button v-on:click="convertTime('2013-10-06')"> Checking </button>
+
+
+      <table>
+        <tr>
+              <th> Employer Name </th>
+              <th> Shift Date </th>
+              <th> Start Time </th>
+              <th> Finish time </th>
+              <th> Break length(minutes) </th>
+            </tr>
+            <tr> 
+              <td> {{ shifts[0].organization.name }} </td>
+              <td> <input v-model="date" type="text"></td>
+              <td> <input v-model="newShiftsParams.start" type="text"> </td>
+              <td> <input v-model="newShiftsParams.finish" type="text"></td>
+              <td> <input v-model="newShiftsParams.break_length" type="text"> </td>
+              <button v-on:click="createShift()"> Create Shift </button>
+            </tr>
+        </table> 
   </div>
 </template>
 
@@ -70,6 +97,8 @@ export default {
       shifts: [],
       organization: [],
       username: [],
+      date: {},
+      newShiftsParams: {},
     };
   },
   created: function () {
@@ -97,10 +126,13 @@ export default {
       });
     },
     formattedDate: function (timestamp) {
-      return moment(timestamp).format("dddd, MMMM Do YYYY");
+      return moment(timestamp).format("MM/DD/YYYY");
     },
     formattedTime: function (timestamp) {
       return moment(timestamp).format("h:mm:ss a");
+    },
+    convertTime: function (date) {
+      console.log(moment.utc(date).format());
     },
     hoursWorked: function (start, finish) {
       return moment(finish).diff(start, "hours");
@@ -114,6 +146,16 @@ export default {
       } else {
         return workedHours * hourly_rate;
       }
+    },
+    createShift: function () {
+      this.utc_date = moment.utc(this.date).format();
+      console.log(this.utc_date);
+      this.newShiftParams.start = this.utc.date;
+      console.log(this.newShiftsParams);
+      // Get the date.
+      // start = date + the time of the start.
+      // Need some logic to figure out AM & PM
+      // Finish - date + finish.. same thing
     },
   },
 };

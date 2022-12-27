@@ -1,15 +1,18 @@
 <template>
   <div class="organization">
-    <h1> Employee Portal </h1>
     <p v-if=""> You aren't a member of any organizations. Join an existing one or create a new one. </p>
-    <h2> Organizations </h2>
-    <li v-for="organization in organizations">
-      {{ organization.name }}
-      <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link>
-      <button v-on:click="joinOrganization(organization)"> Join </button> 
-      {{ info.user_id }}
-      {{ info.organization_id }}
-    </li>
+
+    <div>
+      <h2> Organizations </h2>
+      <li v-for="organization in organizations">
+        {{ organization.name }}
+        <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link>
+        <button v-on:click="joinOrganization(organization)"> Join </button> 
+      </li>
+    </div>
+  
+
+
     <h2> Create an Organization </h2>
     <form> 
     Name:
@@ -22,6 +25,9 @@
 </template>
 
 <style>
+h2 {
+  text-align: center;
+}
 </style>
 
 <script>
@@ -31,6 +37,7 @@ export default {
   data: function () {
     return {
       organizations: [],
+      organization: [],
       newOrganizationParams: {},
       info: {
         user_id: 0,

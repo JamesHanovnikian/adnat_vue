@@ -1,13 +1,20 @@
 <template>
   <div class="OrganizationShow">
-    <h2> {{ organization.name }} </h2>
-     <router-link v-bind:to="`/organization/${organization.id}/shifts`"> View Shifts </router-link>
-    <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link> <br> 
-    <button v-on:click="leaveOrganization(organization)"> Leave </button>
-
+    <div class="container">
+      <div class="header"> 
+        <h2> {{ organization.name }} </h2> 
+      </div>
+      <router-link v-bind:to="`/organization/${organization.id}/shifts`"> View Shifts </router-link> 
+      <br /> 
+      <router-link v-bind:to="`/organization/${organization.id}/edit`"> Edit </router-link> <br /> 
+      <router-link v-on:click="leaveOrganization(organization)"> Leave </router-link>
+    </div>
   </div>
 </template>
 <style>
+.header {
+  margin: auto;
+}
 </style> 
 
 <script>
